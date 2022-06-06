@@ -11,7 +11,7 @@ class Basket {
         items.sumOf { it.price() } - cerisesDiscount(items)
 
     private fun cerisesDiscount(items: List<Fruit>): Price =
-        items.count { it == (Fruit.Cerises) } / 2 * 20
+        items.count { it == (Fruit.Cerises) } / 2 * 30
 
 }
 
