@@ -31,9 +31,7 @@ private fun Fruit.price(): Price =
 enum class Fruit {
     Pommes,
     Bananes,
-    Cerises,
-    Apples,
-    Mele
+    Cerises
 }
 
 typealias Price = Int

@@ -28,7 +28,16 @@ private fun tryToAddFruit(
 private fun parseCsv(entry: String): List<String> =
     entry.split(",").map(String::trim)
 
-private fun parseFruit(fruitName: String) = Fruit.values().firstOrNull { it.name == fruitName }
+private fun parseFruit(fruitName: String) =
+    Fruit.values()
+        .firstOrNull { it.name == translate(fruitName) }
+
+private fun translate(fruitName: String) =
+    when (fruitName) {
+        "Apples" -> "Pommes"
+        "Mele" -> "Pommes"
+        else -> fruitName
+    }
 
 typealias Entries = Sequence<String>
 typealias Print = (String) -> Unit

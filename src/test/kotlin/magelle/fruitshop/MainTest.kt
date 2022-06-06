@@ -37,6 +37,13 @@ class MainTest {
         assertAddedFruits(listOf(Fruit.Cerises, Fruit.Pommes, Fruit.Bananes))
     }
 
+    @Test
+    fun `should translate Apples and Mele to Pommes`() {
+        mainLoop(basket, sequenceOf("Apples, Mele,Pommes"), print)
+
+        assertAddedFruits(3, Fruit.Pommes)
+    }
+
     private fun everyBasketTotalWillBe(total: Int) {
         every { basket.total() }.returns(total)
     }
@@ -45,6 +52,10 @@ class MainTest {
         fruits.forEach {
             verify { basket.add(it) }
         }
+    }
+
+    private fun assertAddedFruits(times: Int, fruit: Fruit) {
+        verify(exactly = times) { basket.add(fruit) }
     }
 
     private fun assertPrintedText(printedLines: List<String>) {
