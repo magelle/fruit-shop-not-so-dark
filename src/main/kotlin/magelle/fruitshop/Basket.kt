@@ -8,24 +8,9 @@ class Basket {
     }
 
     fun total(): Price =
-        items.sumOf { it.price() } - discounts()
+        items.sumOf { it.price() } - applyDiscounts()
 
-    private fun discounts() = cerisesDiscount(items) +
-            bananesDiscount(items) +
-            applesDiscount(items) +
-            meleDiscount(items)
-
-    private fun cerisesDiscount(items: List<Fruit>): Price =
-        items.count { it == (Fruit.Cerises) } / 2 * 20
-
-    private fun bananesDiscount(items: List<Fruit>): Price =
-        items.count { it == (Fruit.Bananes) } / 2 * Fruit.Bananes.price()
-
-    private fun applesDiscount(items: List<Fruit>): Price =
-        items.count { it == (Fruit.Apples) } / 3 * 100
-
-    private fun meleDiscount(items: List<Fruit>): Price =
-        items.count { it == (Fruit.Mele) } / 2 * 50
+    private fun applyDiscounts() = discounts.sumOf { it(items) }
 }
 
 private fun Fruit.price(): Price =
@@ -45,3 +30,20 @@ enum class Fruit {
 }
 
 typealias Price = Int
+typealias Discount = (List<Fruit>) -> Price
+
+fun buildDiscount(discount: Price, every: Int, fruit: Fruit) = { items: List<Fruit> ->
+    items.count { it == fruit } / every * discount
+}
+
+val cerisesDiscount: Discount = buildDiscount(discount = 20, every = 2, fruit = Fruit.Cerises)
+val bananesDiscount: Discount = buildDiscount(discount = Fruit.Bananes.price(), every = 2, fruit = Fruit.Bananes)
+val applesDiscount: Discount = buildDiscount(discount = 100, every = 3, fruit = Fruit.Apples)
+val meleDiscount: Discount = buildDiscount(discount = 50, every = 2, fruit = Fruit.Mele)
+
+private val discounts = listOf(
+    cerisesDiscount,
+    bananesDiscount,
+    applesDiscount,
+    meleDiscount
+)
