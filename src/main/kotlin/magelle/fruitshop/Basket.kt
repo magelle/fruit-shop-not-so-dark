@@ -8,10 +8,13 @@ class Basket {
     }
 
     fun total(): Price =
-        items.sumOf { it.price() } - cerisesDiscount(items)
+        items.sumOf { it.price() } - cerisesDiscount(items) - BananesDiscount(items)
 
     private fun cerisesDiscount(items: List<Fruit>): Price =
         items.count { it == (Fruit.Cerises) } / 2 * 30
+
+    private fun BananesDiscount(items: List<Fruit>): Price =
+        items.count { it == (Fruit.Bananes) } / 2 * Fruit.Bananes.price()
 
 }
 
