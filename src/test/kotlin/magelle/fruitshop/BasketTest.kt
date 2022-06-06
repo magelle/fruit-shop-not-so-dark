@@ -20,7 +20,7 @@ class BasketTest {
 
     @Test
     fun `a batch of 2 cerises gives a discount of 20`() {
-        val cerisesDiscount = 30
+        val cerisesDiscount = 20
         assertBasketPrice(List(1) { Fruit.Cerises }, 75)
         assertBasketPrice(List(2) { Fruit.Cerises }, (75 * 2) - cerisesDiscount)
         assertBasketPrice(List(3) { Fruit.Cerises }, (75 * 3) - cerisesDiscount)

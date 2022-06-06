@@ -13,7 +13,7 @@ class Basket {
     private fun discounts() = cerisesDiscount(items) + bananesDiscount(items)
 
     private fun cerisesDiscount(items: List<Fruit>): Price =
-        items.count { it == (Fruit.Cerises) } / 2 * 30
+        items.count { it == (Fruit.Cerises) } / 2 * 20
 
     private fun bananesDiscount(items: List<Fruit>): Price =
         items.count { it == (Fruit.Bananes) } / 2 * Fruit.Bananes.price()
