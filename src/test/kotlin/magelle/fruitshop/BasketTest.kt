@@ -4,11 +4,12 @@ import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
 class BasketTest {
+    private val bananesPrice = 150
 
     @Test
     fun `fruits have prices`() {
         assertBasketPrice(listOf(Fruit.Pommes), 100)
-        assertBasketPrice(listOf(Fruit.Bananes), 150)
+        assertBasketPrice(listOf(Fruit.Bananes), bananesPrice)
         assertBasketPrice(listOf(Fruit.Cerises), 75)
     }
 
@@ -28,7 +29,6 @@ class BasketTest {
 
     @Test
     fun `a batch of 2 bananes gives one free`() {
-        val bananesPrice = 150
         assertBasketPrice(List(1) { Fruit.Bananes }, bananesPrice)
         assertBasketPrice(List(2) { Fruit.Bananes }, (bananesPrice * 2) - bananesPrice)
         assertBasketPrice(List(3) { Fruit.Bananes }, (bananesPrice * 3) - bananesPrice)
