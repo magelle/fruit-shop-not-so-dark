@@ -22,7 +22,7 @@ class Basket {
 
 private fun Fruit.price(): Price =
     when (this) {
-        Fruit.Pommes, Fruit.Apples, Fruit.Mele -> 100
+        Fruit.Pommes -> 100
         Fruit.Bananes -> 150
         Fruit.Cerises -> 75
     }
