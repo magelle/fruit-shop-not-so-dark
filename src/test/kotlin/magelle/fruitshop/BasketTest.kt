@@ -7,39 +7,29 @@ class BasketTest {
 
     @Test
     fun `fruits have prices`() {
-        assertFruitPrice(Fruit.Pommes, 100)
-        assertFruitPrice(Fruit.Bananes, 150)
-        assertFruitPrice(Fruit.Cerises, 75)
+        assertBasketPrice(listOf(Fruit.Pommes), 100)
+        assertBasketPrice(listOf(Fruit.Bananes), 150)
+        assertBasketPrice(listOf(Fruit.Cerises), 75)
     }
 
     @Test
     fun `should get the total of the basket`() {
-        val basket = Basket()
-
-        basket.add(Fruit.Pommes)
-        basket.add(Fruit.Pommes)
-        basket.add(Fruit.Cerises)
-
-        assertThat(basket.total()).isEqualTo(275)
+        assertBasketPrice(listOf(Fruit.Pommes, Fruit.Pommes, Fruit.Cerises), 275)
     }
 
     @Test
     fun `a batch of 2 cerises gives a discount of 20`() {
-        val basket = Basket()
-
-        basket.add(Fruit.Cerises)
-        assertThat(basket.total()).isEqualTo(75)
-        basket.add(Fruit.Cerises)
-        assertThat(basket.total()).isEqualTo((75 * 2) - 20)
-        basket.add(Fruit.Cerises)
-        assertThat(basket.total()).isEqualTo((75 * 3) - 20)
-        basket.add(Fruit.Cerises)
-        assertThat(basket.total()).isEqualTo((75 * 4) - (20 * 2))
+        assertBasketPrice(List(1) { Fruit.Cerises }, 75)
+        assertBasketPrice(List(2) { Fruit.Cerises }, (75 * 2) - 20)
+        assertBasketPrice(List(3) { Fruit.Cerises }, (75 * 3) - 20)
+        assertBasketPrice(List(4) { Fruit.Cerises }, (75 * 4) - (20 * 2))
     }
 
-    private fun assertFruitPrice(fruit: Fruit, price: Price) {
+    private fun assertBasketPrice(fruits: List<Fruit>, price: Int) {
         val basket = Basket()
-        basket.add(fruit)
+
+        fruits.forEach(basket::add)
+
         assertThat(basket.total()).isEqualTo(price)
     }
 
