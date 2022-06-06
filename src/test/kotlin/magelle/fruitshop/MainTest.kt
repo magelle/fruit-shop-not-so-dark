@@ -17,17 +17,24 @@ class MainTest {
     fun `should receive fruits then print total`() {
         everyBasketTotalWillBe(100)
 
-        mainLoop(basket, sequenceOf("Fruits A", "Fruits B"), print)
+        mainLoop(basket, sequenceOf("Pommes", "Cerises"), print)
 
-        assertAddedFruits(listOf("Fruits A", "Fruits B"))
+        assertAddedFruits(listOf(Fruit.Pommes, Fruit.Cerises))
         assertPrintedText(listOf("100", "100"))
+    }
+
+    @Test
+    fun `should print an error message on unknown fruits`() {
+        mainLoop(basket, sequenceOf("Unknown fruits"), print)
+
+        assertPrintedText(listOf("Error: Unknown fruits \"Unknown fruits\""))
     }
 
     private fun everyBasketTotalWillBe(total: Int) {
         every { basket.total() }.returns(total)
     }
 
-    private fun assertAddedFruits(fruits: List<String>) {
+    private fun assertAddedFruits(fruits: List<Fruit>) {
         fruits.forEach {
             verify { basket.add(it) }
         }

@@ -14,12 +14,17 @@ class Basket {
 
 private fun Fruit.price(): Price =
     when (this) {
-        "Pommes" -> 100
-        "Bananes" -> 150
-        "Cerises" -> 75
+        Fruit.Pommes -> 100
+        Fruit.Bananes -> 150
+        Fruit.Cerises -> 75
         else -> throw IllegalStateException("Unknown item $this")
     }
 
 
-typealias Fruit = String
+enum class Fruit {
+    Pommes,
+    Bananes,
+    Cerises
+}
+
 typealias Price = Int
