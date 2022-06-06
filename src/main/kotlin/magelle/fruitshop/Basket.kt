@@ -22,7 +22,7 @@ class Basket {
 
 private fun Fruit.price(): Price =
     when (this) {
-        Fruit.Pommes -> 100
+        Fruit.Pommes, Fruit.Apples, Fruit.Mele -> 100
         Fruit.Bananes -> 150
         Fruit.Cerises -> 75
     }
@@ -31,7 +31,9 @@ private fun Fruit.price(): Price =
 enum class Fruit {
     Pommes,
     Bananes,
-    Cerises
+    Cerises,
+    Apples,
+    Mele
 }
 
 typealias Price = Int

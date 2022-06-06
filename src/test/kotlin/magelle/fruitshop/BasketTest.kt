@@ -11,6 +11,8 @@ class BasketTest {
         assertBasketPrice(listOf(Fruit.Pommes), 100)
         assertBasketPrice(listOf(Fruit.Bananes), bananesPrice)
         assertBasketPrice(listOf(Fruit.Cerises), 75)
+        assertBasketPrice(listOf(Fruit.Apples), 100)
+        assertBasketPrice(listOf(Fruit.Mele), 100)
     }
 
     @Test
