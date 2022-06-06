@@ -30,6 +30,13 @@ class MainTest {
         assertPrintedText(listOf("Error: Unknown fruits \"Unknown fruits\""))
     }
 
+    @Test
+    fun `should accept comma separated list of fruits`() {
+        mainLoop(basket, sequenceOf("Cerises, Pommes,Bananes"), print)
+
+        assertAddedFruits(listOf(Fruit.Cerises, Fruit.Pommes, Fruit.Bananes))
+    }
+
     private fun everyBasketTotalWillBe(total: Int) {
         every { basket.total() }.returns(total)
     }
@@ -41,7 +48,7 @@ class MainTest {
     }
 
     private fun assertPrintedText(printedLines: List<String>) {
-        assertThat(printedText).isEqualTo(printedLines)
+        assertThat(printedText).containsAll(printedLines)
     }
 
 }
