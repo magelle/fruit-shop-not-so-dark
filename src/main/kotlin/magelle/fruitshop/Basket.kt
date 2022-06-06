@@ -45,11 +45,15 @@ val anyPommesDiscount: Discount = {items: List<Fruit> ->
         listOf(Fruit.Apples, Fruit.Pommes, Fruit.Mele).contains(it)
     } / 4 * 100
 }
+val fiveFruitsDiscount: Discount = {items: List<Fruit> ->
+    items.count() / 5 * 200
+}
 
 private val discounts = listOf(
     cerisesDiscount,
     bananesDiscount,
     applesDiscount,
     meleDiscount,
-    anyPommesDiscount
+    anyPommesDiscount,
+    fiveFruitsDiscount
 )

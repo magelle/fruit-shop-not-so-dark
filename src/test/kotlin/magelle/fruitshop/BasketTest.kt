@@ -42,7 +42,7 @@ class BasketTest {
         assertBasketPrice(List(1) { Fruit.Apples }, 100)
         assertBasketPrice(List(3) { Fruit.Apples }, 200)
         assertBasketPrice(List(4) { Fruit.Apples }, 100 + 200 - 100)
-        assertBasketPrice(List(6) { Fruit.Apples }, 200 + 200 - 100)
+        assertBasketPrice(List(6) { Fruit.Apples }, 200 + 200 - 100 - 200)
     }
 
     @Test
@@ -56,6 +56,19 @@ class BasketTest {
     @Test
     fun `a discount of 100 for 4 apples of any translation`() {
         assertBasketPrice(listOf(Fruit.Pommes, Fruit.Pommes, Fruit.Mele, Fruit.Apples), 400 - 100)
+    }
+
+    @Test
+    fun `a discount of 200 for 5 fruits of any translation`() {
+        assertBasketPrice(
+            listOf(
+                Fruit.Pommes,
+                Fruit.Bananes,
+                Fruit.Mele,
+                Fruit.Apples,
+                Fruit.Cerises,
+            ), (100 + 150 + 100 + 100 + 75) - 200
+        )
     }
 
     private fun assertBasketPrice(fruits: List<Fruit>, price: Int) {
