@@ -48,9 +48,9 @@ class BasketTest {
     @Test
     fun `a batch of 2 Mele cost 150`() {
         assertBasketPrice(List(1) { Fruit.Mele }, 100)
-        assertBasketPrice(List(2) { Fruit.Mele }, 150)
-        assertBasketPrice(List(3) { Fruit.Mele }, 100 + 150)
-        assertBasketPrice(List(4) { Fruit.Mele }, 150 + 150)
+        assertBasketPrice(List(2) { Fruit.Mele }, 100)
+        assertBasketPrice(List(3) { Fruit.Mele }, 100 + 100)
+        assertBasketPrice(List(4) { Fruit.Mele }, 100 + 100)
     }
 
     private fun assertBasketPrice(fruits: List<Fruit>, price: Int) {

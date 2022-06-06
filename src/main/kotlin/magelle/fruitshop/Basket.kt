@@ -39,7 +39,7 @@ fun buildDiscount(discount: Price, every: Int, fruit: Fruit) = { items: List<Fru
 val cerisesDiscount: Discount = buildDiscount(discount = 20, every = 2, fruit = Fruit.Cerises)
 val bananesDiscount: Discount = buildDiscount(discount = Fruit.Bananes.price(), every = 2, fruit = Fruit.Bananes)
 val applesDiscount: Discount = buildDiscount(discount = 100, every = 3, fruit = Fruit.Apples)
-val meleDiscount: Discount = buildDiscount(discount = 50, every = 2, fruit = Fruit.Mele)
+val meleDiscount: Discount = buildDiscount(discount = 100, every = 2, fruit = Fruit.Mele)
 
 private val discounts = listOf(
     cerisesDiscount,
