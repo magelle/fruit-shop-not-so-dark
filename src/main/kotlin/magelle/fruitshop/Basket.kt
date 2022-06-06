@@ -8,7 +8,10 @@ class Basket {
     }
 
     fun total(): Price =
-        items.sumOf { it.price() }
+        items.sumOf { it.price() } - cerisesDiscount(items)
+
+    private fun cerisesDiscount(items: List<Fruit>): Price =
+        items.count { it == (Fruit.Cerises) } / 2 * 20
 
 }
 
@@ -17,7 +20,6 @@ private fun Fruit.price(): Price =
         Fruit.Pommes -> 100
         Fruit.Bananes -> 150
         Fruit.Cerises -> 75
-        else -> throw IllegalStateException("Unknown item $this")
     }
 
 
