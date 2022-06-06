@@ -8,16 +8,15 @@ class Basket {
     }
 
     fun total(): Price =
-        items.asSequence()
-            .sumOf { it.price() }
+        items.sumOf { it.price() }
 
 }
 
 private fun Fruit.price(): Price =
     when (this) {
-        "Pomme" -> 100
+        "Pommes" -> 100
         "Bananes" -> 150
-        "Cerise" -> 75
+        "Cerises" -> 75
         else -> throw IllegalStateException("Unknown item $this")
     }
 

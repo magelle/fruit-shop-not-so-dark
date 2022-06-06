@@ -7,18 +7,18 @@ class BasketTest {
 
     @Test
     fun `fruits have prices`() {
-        assertFruitPrice("Pomme", 100)
+        assertFruitPrice("Pommes", 100)
         assertFruitPrice("Bananes", 150)
-        assertFruitPrice("Cerise", 75)
+        assertFruitPrice("Cerises", 75)
     }
 
     @Test
     fun `should get the total of the basket`() {
         val basket = Basket()
 
-        basket.add("Pomme")
-        basket.add("Pomme")
-        basket.add("Cerise")
+        basket.add("Pommes")
+        basket.add("Pommes")
+        basket.add("Cerises")
 
         assertThat(basket.total()).isEqualTo(275)
     }
